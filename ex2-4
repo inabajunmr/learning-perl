@@ -1,0 +1,4 @@
+#!/usr/bin/perl
+$val1 = <STDIN>;
+$val2 = <STDIN>;
+print $val1 * $val2 . "\n";

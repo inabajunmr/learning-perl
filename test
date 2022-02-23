@@ -1,0 +1,7 @@
+#!/usr/bin/perl
+$val;
+if(defined($val)) {
+    print "defined";
+}else {
+    print "undefined";
+}

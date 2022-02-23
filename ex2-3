@@ -1,0 +1,8 @@
+#!/usr/bin/perl
+$radius = <STDIN>;
+if($radius < 0) {
+    print "0\n"
+} else {
+    $circumference=$radius*2*3.14;
+    print "$circumference\n";
+}

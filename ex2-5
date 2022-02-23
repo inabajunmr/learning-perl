@@ -1,0 +1,4 @@
+#!/usr/bin/perl
+$str = <STDIN>;
+$count = <STDIN>;
+print "$str" x $count . "\n";
