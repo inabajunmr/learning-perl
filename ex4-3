@@ -1,0 +1,22 @@
+#!/usr/bin/perl
+use feature qw(signatures);
+use strict;
+
+sub above_average(@vals) {
+    chomp(@vals);
+    my $total = 0;
+    foreach my $v (@vals) {
+        $total += $v;
+    }
+
+    my @upper = ();    
+    my $average = $total / @vals;
+    foreach my $v (@vals) {
+        if($v > $average) {
+            push(@upper, $v);
+        }
+    }
+    return @upper;
+}
+
+print above_average((1,2,3,4,5));

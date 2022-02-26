@@ -1,0 +1,16 @@
+#!/usr/bin/perl
+use feature qw(signatures state say);
+
+sub greet($name) {
+    state $last;
+   if(defined($last)) {
+        say("Hi $name! $last is also here!");
+    } else {
+        say("Hi $name! You are the first one here!");
+    }
+    
+    $last = $name;   
+}
+
+&greet("fred");
+&greet("barney");

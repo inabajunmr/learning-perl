@@ -1,0 +1,14 @@
+#!/usr/bin/perl
+use feature qw(signatures);
+use strict;
+
+sub total(@vals) {
+    chomp(@vals);
+    my $total = 0;
+    foreach my $v (@vals) {
+        $total += $v;
+    }
+    return $total;
+}
+
+print total((1..1000));
