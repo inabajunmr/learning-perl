@@ -1,7 +1,8 @@
 #!/usr/bin/perl
-$val;
-if(defined($val)) {
-    print "defined";
-}else {
-    print "undefined";
-}
+use feature qw(say);
+
+@a=(1,2,3);
+@b=@a;
+$b[1]=100;
+say @a;
+say @b;

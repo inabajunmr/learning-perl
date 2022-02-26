@@ -1,0 +1,8 @@
+#!/usr/bin/perl
+use feature qw(say);
+
+@names=qw(fred betty barney dino wilma pebbles bamm-bamm);
+@lines=<STDIN>;
+foreach $v (@lines) {
+    say $names[$v-1];
+}

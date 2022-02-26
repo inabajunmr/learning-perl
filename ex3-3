@@ -1,0 +1,11 @@
+#!/usr/bin/perl
+use feature qw(say);
+
+@lines=<STDIN>;
+@sorted=sort @lines;
+@chomp=@sorted;
+chomp(@chomp);
+say "===one line===";
+say @chomp;
+say "===each lines===";
+say @sorted;
