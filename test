@@ -1,8 +1,7 @@
 #!/usr/bin/perl
-use feature qw(signatures);
+use feature qw(signatures say);
 use strict;
+use autodie;
 
-sub plus($a, $b) {
-    return $a + $b;
-}
-print &plus(1,2);
+open my $out, ">", "out";
+print $out "yes";

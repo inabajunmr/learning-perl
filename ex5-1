@@ -1,0 +1,7 @@
+#!/usr/bin/perl
+use feature qw(signatures state say);
+
+foreach(@ARGV) {
+    open my $file, "<", $_;
+    say reverse <$file>;
+}
