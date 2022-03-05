@@ -1,0 +1,14 @@
+#!/usr/bin/perl
+use feature qw(signatures state say);
+
+my @input = <>;
+chomp(@input);
+
+%counter = ();
+foreach(@input) {
+    $counter{$_}++;
+}
+
+foreach(sort keys %counter) {
+    print "$_ - $counter{$_}\n";
+}

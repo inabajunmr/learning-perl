@@ -1,7 +1,5 @@
 #!/usr/bin/perl
 use feature qw(signatures say);
-use strict;
 use autodie;
 
-open my $out, ">", "out";
-print $out "yes";
+print $ENV{PATH};

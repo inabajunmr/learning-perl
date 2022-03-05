@@ -1,0 +1,12 @@
+#!/usr/bin/perl
+use feature qw(signatures state say);
+
+my %names = (
+    pac => 'man',
+    rock => 'man',
+    hiko => 'nyan',
+);
+
+my $input = <>;
+chomp($input);
+print "Name is $names{$input}!\n";

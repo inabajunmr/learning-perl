@@ -1,0 +1,10 @@
+#!/usr/bin/perl
+use feature qw(signatures state say);
+
+print "123456789".("0123456789") x 10 ."\n";
+
+my @in = <STDIN>;
+chomp(@in);
+foreach(@in) {
+    printf "%20s\n", $_;
+}
