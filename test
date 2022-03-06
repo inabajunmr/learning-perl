@@ -2,4 +2,7 @@
 use feature qw(signatures say);
 use autodie;
 
-print $ENV{PATH};
+$_ = "0120-444";
+if(m![0-9-]+!) {
+    print "match\n";
+}

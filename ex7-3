@@ -1,0 +1,10 @@
+#!/usr/bin/perl
+use feature qw(signatures state say);
+
+open my $file, "<", "ex7-names";
+while(<$file>) {
+    chomp;
+    if(/\./) {
+        say $_;
+    }
+}
