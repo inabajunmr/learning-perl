@@ -1,0 +1,16 @@
+#!/usr/bin/perl
+
+$len = @ARGV;
+if($len != 1) {
+    die "oh";
+}
+
+open my $original, "<", @ARGV[0];
+open my $target, ">", @ARGV[0].".out";
+
+while(<$original>) {
+    s/fred/\0/ig;
+    s/wilma/fred/ig;
+    s/\0/wilma/ig;
+    print $target $_;
+}

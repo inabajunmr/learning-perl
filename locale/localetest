@@ -1,0 +1,17 @@
+#!/usr/bin/perl
+use feature qw(signatures say);
+use autodie;
+
+my $OE = chr( 0xBC );
+open my $file, "<", "./locale/test";
+$_ = <$file>;
+chomp;
+if(/$OE/li) { # l をつけるとコードが UTF-8 でも現在のロケールでマッチする
+    say "match";
+}
+if(/$OE/i) { # UTF-8 の OxBC には小文字がないのでマッチしない
+    say "match";
+}
+
+# 以下のように実行する
+# LC_ALL=en_US.ISO8859-15 perl locale/localetest

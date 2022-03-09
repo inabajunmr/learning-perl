@@ -1,0 +1,18 @@
+#!/usr/bin/perl
+
+$^I = ".bak";
+my $beforeSiban=0;
+my $copyright=0;
+while(<>) {
+    if($beforeSiban && !$copyright) {
+        if(/\A## copyright/ == false) {
+            print "## copyright\n";
+        }
+        $copyright = 1;
+        $beforeSiban = 0;
+    }
+    print;
+    if(/\A#!/) {
+        $beforeSiban=1;
+    }
+}

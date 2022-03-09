@@ -1,0 +1,9 @@
+#!/usr/bin/perl
+
+$^I = ".bak";
+while(<>) {
+    print;
+    if(/\A#!/) {
+        print "## Copyright\n"
+    }
+}

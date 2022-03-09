@@ -1,0 +1,11 @@
+#!/usr/bin/perl
+
+while(<>) {
+    chomp;
+    if (/(?<match1>\b\w*a\b)(?<match2>.{1,5})?/) {
+        print "Matched: |$`<$&>$'| - ";
+        print "contains $+{match1} and $+{match2}\n";
+    } else {
+        print "No match: |$_|\n";
+    }
+}

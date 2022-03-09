@@ -1,0 +1,11 @@
+#!/usr/bin/perl
+
+while(<>) {
+    chomp;
+    if (/(?<match>\b\w*a\b)/) {
+        print "Matched: |$`<$&>$'| - ";
+        print "<match> contains $+{match}\n"
+    } else {
+        print "No match: |$_|\n";
+    }
+}
