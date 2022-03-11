@@ -1,13 +1,12 @@
 #!/usr/bin/perl
-use utf8;
-use warnings;
+use feature qw(signatures say);
 use strict;
-use Encode qw(encode_utf8 decode_utf8);
-use feature qw(say fc);
 
-$^I = "";
-my $var = 0;
-while(<>) {
-    s/unko/Unko/;
-    print;
+
+
+print(p(0) and p(1) || p(2));
+
+sub p($val) {
+    say $val;
+    return $val;
 }

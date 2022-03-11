@@ -1,0 +1,13 @@
+#!/usr/bin/perl
+use feature qw(signatures state say);
+
+$ENV{oh} = undef;
+my $max_key_length = 0;
+while (my ($k, $v) = each %ENV) {
+    if($max_key_length < length $k) {
+        $max_key_length = length $k;
+    }
+}
+foreach my $key (sort keys %ENV) {
+    printf "%${max_key_length}s:%s\n", $key, $ENV{$key} // "(undefined value)";
+}

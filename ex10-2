@@ -1,0 +1,27 @@
+#!/usr/bin/perl
+use feature qw(say);
+
+my $verbose = $ENV{VERBOSE} // 0;
+$answer = int(1 + rand 100);
+say "debug answer:$answer" if $verbose;
+
+say "number:";
+while(<STDIN>) {
+    chomp();
+    if($_ eq "quit" || $_ eq "exit" || $_ eq "") {
+        say "finished!";
+        last;
+    }
+    $in = int($_);
+    if($answer == $in) {
+        say "Yeah!";
+        last;
+    } elsif ($in > $answer) {
+        say "Too high."
+    } else {
+        say "Too low."
+    }
+
+    say "number:"
+
+}
