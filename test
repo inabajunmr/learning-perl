@@ -1,12 +1,5 @@
 #!/usr/bin/perl
-use feature qw(signatures say);
-use strict;
-
-
-
-print(p(0) and p(1) || p(2));
-
-sub p($val) {
-    say $val;
-    return $val;
-}
+# use local::lib;
+use Time::Moment;
+my $dt = Time::Moment->now;
+printf $dt->day_of_month;

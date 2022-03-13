@@ -1,0 +1,17 @@
+#!/usr/bin/perl
+use feature qw(signatures state say);
+use Module::CoreList;
+use Time::Moment;
+
+$year = @ARGV[0];
+$month = @ARGV[1];
+
+$now = Time::Moment->now();
+$in = Time::Moment->new(
+    year => $year,
+    month => $month,
+);
+
+print($in->delta_years($now)." years, ");
+print(($in->delta_months($now) % 12)."months, and ");
+print(($in->delta_days($now) % 365)." days\n");
