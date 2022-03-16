@@ -1,0 +1,11 @@
+#!/usr/bin/perl
+use feature qw(signatures state say);
+
+
+$last = 0;
+$name;
+foreach(@ARGV) {
+    $name = $_ if $last < -M;
+    $last = -M if $last < -M;
+}
+print $name . ":" . $last;

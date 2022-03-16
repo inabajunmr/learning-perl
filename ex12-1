@@ -1,0 +1,15 @@
+#!/usr/bin/perl
+use feature qw(signatures state say);
+
+foreach(@ARGV) {
+    printFileMetadata($_);
+}
+
+sub printFileMetadata($filename) {
+    print $filename."は";
+    print "読める！" if -r $filename;
+    print "書ける！" if -w $filename;
+    print "実行可能！" if -x $filename;
+    print "存在しない！" if !-e $filename;
+    print "\n";
+}

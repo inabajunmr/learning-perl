@@ -1,5 +1,4 @@
 #!/usr/bin/perl
-# use local::lib;
-use Time::Moment;
-my $dt = Time::Moment->now;
-printf $dt->day_of_month;
+use feature qw(say);
+
+print "a" | "b"

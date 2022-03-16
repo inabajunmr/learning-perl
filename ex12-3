@@ -1,0 +1,11 @@
+#!/usr/bin/perl
+use feature qw(signatures state say);
+
+foreach(@ARGV) {
+    printFileMetadata($_);
+}
+
+sub printFileMetadata($filename) {
+    print "${filename}は読める書ける実行できる所有してる" if -o -r -w -x $filename;
+    print "\n";
+}
