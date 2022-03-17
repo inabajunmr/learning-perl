@@ -1,0 +1,4 @@
+#!/usr/bin/perl
+use feature qw(signatures state say);
+
+unlink @ARGV;

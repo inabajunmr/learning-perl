@@ -1,0 +1,12 @@
+#!/usr/bin/perl
+use feature qw(signatures state say);
+use File::Spec::Functions;
+use File::Basename;
+
+$f = @ARGV[0];
+$d = @ARGV[1];
+if(-d $d) {
+    $d = catfile($d, basename($f))
+
+}
+link $f, $d;

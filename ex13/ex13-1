@@ -1,0 +1,6 @@
+#!/usr/bin/perl
+use feature qw(signatures state say);
+
+$dirname = @ARGV[0];
+chdir $dirname;
+say join("\n", glob '*');

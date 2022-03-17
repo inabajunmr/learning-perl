@@ -1,0 +1,10 @@
+#!/usr/bin/perl
+use feature qw(signatures state say);
+
+my $dirname = @ARGV[0];
+chdir $dirname;
+opendir my $dir, '.';
+
+foreach (readdir $dir) {
+    say $_;
+}

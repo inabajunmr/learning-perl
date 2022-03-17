@@ -1,0 +1,10 @@
+#!/usr/bin/perl
+use feature qw(signatures state say);
+use File::Spec::Functions;
+use File::Basename;
+
+foreach(glob '*') {
+    if( -l $_) {
+        say $_." -> ".readlink($_);
+    }
+}

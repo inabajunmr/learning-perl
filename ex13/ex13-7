@@ -1,0 +1,25 @@
+#!/usr/bin/perl
+use feature qw(signatures state say);
+use File::Spec::Functions;
+use File::Basename;
+
+$len = @ARGV;
+if($len == 3) {
+    $s = @ARGV[0];
+    $f = @ARGV[1];
+    $d = @ARGV[2];
+} else {
+    $f = @ARGV[0];
+    $d = @ARGV[1];
+}
+
+if(-d $d) {
+    $d = catfile($d, basename($f))
+
+}
+
+if($s eq '-s') {
+    symlink $f, $d;
+} else {
+    link $f, $d;
+}
