@@ -1,0 +1,11 @@
+#!/usr/bin/perl
+use feature qw(signatures state say);
+
+$date = `date`;
+$date =~ s/ .*//;
+
+if($date eq 'Sun' || $date eq 'Sat') {
+    say 'go play';
+} else {
+    say 'get to work';
+}

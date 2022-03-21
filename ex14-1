@@ -1,0 +1,8 @@
+#!/usr/bin/perl
+use feature qw(signatures state say);
+
+my @numbers = (17, 1000, 04, 1.50, 3.14159, -10, 1.5, 4, 2001, 90210, 666);
+sort @numbers;
+foreach (@numbers) {
+    printf "%10s\n", $_;
+}

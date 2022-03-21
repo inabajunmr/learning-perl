@@ -1,0 +1,5 @@
+#!/usr/bin/perl
+use feature qw(signatures state say);
+
+chdir '/';
+system 'ls -la';

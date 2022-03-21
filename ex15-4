@@ -1,0 +1,20 @@
+#!/usr/bin/perl
+use feature qw(signatures state say);
+
+sub count_handler_hup {
+    state $count = 0;
+    $count++;
+    say "Caught HUP: $count";
+}
+
+sub int_handler {
+    say "Caught INT. Exiting.";
+    exit;
+}
+
+$SIG{HUP} = 'count_handler_hup';
+$SIG{INT} = 'int_handler';
+
+while(1) {
+    sleep 1;
+}

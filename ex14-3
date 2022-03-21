@@ -1,0 +1,22 @@
+#!/usr/bin/perl
+use feature qw(signatures state say);
+
+say "text:";
+$text = <STDIN>;
+chomp $text;
+say "partial text:";
+$ptext = <STDIN>;
+chomp $ptext;
+# $text = "hello lo lo";
+# $ptext = "lo";
+
+$i = 0;
+while(1) {
+    $i = (index $text, $ptext, $i);
+    if ($i != -1) {
+        say $i;
+        $i += 1;
+        next;
+    }
+    last;    
+}

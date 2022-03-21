@@ -1,0 +1,8 @@
+#!/usr/bin/perl
+use feature qw(signatures state say);
+use Cwd;
+
+open STDOUT, '>', 'ls.out';
+open STDERR, '>', 'ls.err';
+chdir '/';
+system 'ls', '-la';

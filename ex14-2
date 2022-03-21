@@ -1,0 +1,16 @@
+#!/usr/bin/perl
+use feature qw(signatures state say);
+
+my %last_name = qw{
+    fred flintstone Wilma Flintstone Barney Rubble
+    betty rubble Bamm-Bamm Rubble PEBBLES FLINTSTONE
+};
+
+@sorted = sort {
+    "\L$last_name{$a}" cmp "\L$last_name{$b}" 
+    or "\L$a" cmp "\L$b"
+} keys %last_name;
+
+foreach(@sorted) {
+    say $_;
+}
