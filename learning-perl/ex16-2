@@ -1,0 +1,10 @@
+#!/usr/bin/perl
+use feature qw(signatures state say);
+
+foreach(glob '*') {
+    ($atime, $mtime) = map {
+        ($y, $m, $d) = (localtime($_))[5,4,3];
+        sprintf '%4d-%02d-%02d', $y + 1900, $m + 1, $d;
+        } (stat $_)[8, 9];
+    say "$_: $atime, $mtime";
+};

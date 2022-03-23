@@ -1,0 +1,10 @@
+#!/usr/bin/perl
+
+use feature qw(say);
+use List::Util qw(first sum);
+
+@list = qw(hello world tako ika shake unko);
+@first = first {/o\z/} @list;
+say @first; # o が e に
+
+say sum(1..100);

@@ -1,0 +1,5 @@
+#!/usr/local/bin/env perl
+use strict;
+use warning;
+
+__END__

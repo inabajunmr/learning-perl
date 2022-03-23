@@ -1,0 +1,18 @@
+#!/usr/bin/perl
+use feature qw(signatures state say);
+
+@in = <>;
+while(1) {
+    $pattern = <STDIN>;
+    chomp($pattern);
+    if($pattern eq '') {
+        last;
+    }
+    eval {
+        @grep = grep /$pattern/, @in;
+        say join "\n", @grep;
+    };
+    if($@) {
+        say "Invalid pattern: $@";
+    }
+}
