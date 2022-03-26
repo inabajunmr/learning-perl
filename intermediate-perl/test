@@ -1,0 +1,11 @@
+#!/usr/local/bin/env perl
+use strict;
+use warnings;
+use feature qw(say);
+
+my @array = qw(1 2 3);
+say ref \@array; # ARRAY
+say ref \(1);
+if ((ref \@array) eq (ref ())) {
+    say 'this is array';
+}

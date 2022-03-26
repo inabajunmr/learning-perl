@@ -1,0 +1,7 @@
+#!/usr/local/bin/env perl
+use strict;
+use warnings;
+use Module::CoreList;
+use feature qw(say);
+
+print map {'    '.$_."\n"} (grep {(-s $_)< 1000} @ARGV);

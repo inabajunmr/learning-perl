@@ -1,5 +1,5 @@
 #!/usr/local/bin/env perl
 use strict;
 use warnings;
-
-__END__
+use Module::CoreList;
+use feature qw(say);

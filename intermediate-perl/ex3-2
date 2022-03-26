@@ -1,0 +1,20 @@
+#!/usr/local/bin/env perl
+use strict;
+use warnings;
+use Module::CoreList;
+use File::Basename;
+
+my @files = glob("/etc/*");
+@files = map{basename($_)} @files;
+while(1) {
+    chomp(my $pattern = <STDIN>);
+    if($pattern eq '') {
+        last;
+    }
+    eval {
+        print map {$_."\n"} grep {/$pattern/} @files;
+    };
+    if($@) {
+        print "$@\n";
+    }
+}

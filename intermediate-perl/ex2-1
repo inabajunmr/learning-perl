@@ -1,0 +1,7 @@
+#!/usr/local/bin/env perl
+use strict;
+use warnings;
+use Cwd 'abs_path';
+
+my @files = glob('*');
+print map {"    ".abs_path($_)."\n"} @files;

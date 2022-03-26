@@ -1,0 +1,9 @@
+#!/usr/local/bin/env perl
+use strict;
+use warnings;
+use Module::CoreList;
+use feature qw(say);
+
+foreach(Module::CoreList->find_modules(".*", 5.014002)){
+    say $_.":".Module::CoreList->first_release($_);
+};
