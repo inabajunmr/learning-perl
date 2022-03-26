@@ -1,0 +1,43 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+my %total_bytes;
+my %total_bytes_each_source;
+while (<>) {
+	my ($source, $destination, $bytes) = split;
+	$total_bytes{$source}{$destination} += $bytes;
+	$total_bytes_each_source{$source} += $bytes;
+}
+
+my @sort_by_source = sort {
+	my $asum = total_by_source($a, \%total_bytes);
+	my $bsum = total_by_source($b, \%total_bytes);
+	$bsum <=> $asum;
+	
+} keys %total_bytes;
+
+for my $source (@sort_by_source) {
+	my $total = total_by_source($source, \%total_bytes);
+	print "Total by $source: $total bytes\n";
+
+	my @sort_by_dest = sort {
+		$total_bytes{$source}{$b} <=> $total_bytes{$source}{$a};
+	} keys %{$total_bytes{$source}};
+
+	for my $destination (@sort_by_dest) {
+		print "$source => $destination: $total_bytes{$source}{$destination} bytes\n";
+	}
+	print "\n";
+}
+
+sub total_by_source {
+	my $key = shift;
+	my $total_bytes = shift;
+
+	my $sum = 0;
+	for my $k (keys %{%{$total_bytes}{$key}}) {
+		$sum += $total_bytes{$key}{$k};
+	}
+	return $sum;	
+}

@@ -1,11 +1,18 @@
 #!/usr/local/bin/env perl
-use strict;
+# use strict;
 use warnings;
 use feature qw(say);
 
-my @array = qw(1 2 3);
-say ref \@array; # ARRAY
-say ref \(1);
-if ((ref \@array) eq (ref ())) {
-    say 'this is array';
+{
+    my @a = qw(a b c);
+    my @b = qw(a b c);
+    # both reference count are 1
+    push @a, \@b;
+    # @b reference count is 2(from @b and via @a)
+    push @b, \@a;
+    print \@a;
+    @a = ();
+    print \@a;
+    say $b[3][0];
 }
+# why is @b reference count 0?
