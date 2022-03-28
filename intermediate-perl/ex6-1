@@ -1,0 +1,57 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+use Storable;
+
+my $total_bytes_file = "total_bytes";
+my $total_bytes_each_source_file = "total_bytes_each_source_bytes";
+
+my %total_bytes_each_source;
+my %total_bytes;
+if(-e $total_bytes_file) {
+	%total_bytes = %{retrieve($total_bytes_file)};
+}
+if(-e $total_bytes_each_source_file) {
+	%total_bytes_each_source = %{retrieve($total_bytes_each_source_file)};
+}
+
+while (<>) {
+	my ($source, $destination, $bytes) = split;
+	$total_bytes{$source}{$destination} += $bytes;
+	$total_bytes_each_source{$source} += $bytes;
+}
+
+my @sort_by_source = sort {
+	my $asum = total_by_source($a, \%total_bytes);
+	my $bsum = total_by_source($b, \%total_bytes);
+	$bsum <=> $asum;
+	
+} keys %total_bytes;
+
+for my $source (@sort_by_source) {
+	my $total = total_by_source($source, \%total_bytes);
+	print "Total by $source: $total bytes\n";
+
+	my @sort_by_dest = sort {
+		$total_bytes{$source}{$b} <=> $total_bytes{$source}{$a};
+	} keys %{$total_bytes{$source}};
+
+	for my $destination (@sort_by_dest) {
+		print "$source => $destination: $total_bytes{$source}{$destination} bytes\n";
+	}
+	print "\n";
+}
+
+store \%total_bytes, $total_bytes_file;
+store \%total_bytes_each_source, $total_bytes_each_source_file;
+
+sub total_by_source {
+	my $key = shift;
+	my $total_bytes = shift;
+
+	my $sum = 0;
+	for my $k (keys %{%{$total_bytes}{$key}}) {
+		$sum += $total_bytes{$key}{$k};
+	}
+	return $sum;	
+}

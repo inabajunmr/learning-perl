@@ -2,17 +2,10 @@
 # use strict;
 use warnings;
 use feature qw(say);
+use JSON;
 
-{
-    my @a = qw(a b c);
-    my @b = qw(a b c);
-    # both reference count are 1
-    push @a, \@b;
-    # @b reference count is 2(from @b and via @a)
-    push @b, \@a;
-    print \@a;
-    @a = ();
-    print \@a;
-    say $b[3][0];
-}
-# why is @b reference count 0?
+my @a = qw(a b c);
+my @b = qw(1 2 3);
+push @a, \@b;
+say to_json(\@a);
+say to_json((\@a), { pretty => 1});

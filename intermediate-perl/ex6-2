@@ -1,0 +1,63 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+use JSON;
+
+my $total_bytes_file = "total_bytes";
+my $total_bytes_each_source_file = "total_bytes_each_source_bytes";
+my %total_bytes_each_source;
+my %total_bytes;
+if(-e $total_bytes_file) {
+	open my $total_bytes_file_r, "<", $total_bytes_file;
+	my $j = <$total_bytes_file_r>;
+	%total_bytes = %{from_json($j)};
+}
+if(-e $total_bytes_each_source_file) {
+	open my $total_bytes_each_source_file_r, "<", $total_bytes_each_source_file;
+	my $j = <$total_bytes_each_source_file_r>;
+	%total_bytes_each_source = %{from_json($j)};
+}
+
+open my $total_bytes_file_w, ">", $total_bytes_file;
+open my $total_bytes_each_source_file_w, ">", $total_bytes_each_source_file;
+
+while (<>) {
+	my ($source, $destination, $bytes) = split;
+	$total_bytes{$source}{$destination} += $bytes;
+	$total_bytes_each_source{$source} += $bytes;
+}
+
+my @sort_by_source = sort {
+	my $asum = total_by_source($a, \%total_bytes);
+	my $bsum = total_by_source($b, \%total_bytes);
+	$bsum <=> $asum;
+	
+} keys %total_bytes;
+
+for my $source (@sort_by_source) {
+	my $total = total_by_source($source, \%total_bytes);
+	print "Total by $source: $total bytes\n";
+
+	my @sort_by_dest = sort {
+		$total_bytes{$source}{$b} <=> $total_bytes{$source}{$a};
+	} keys %{$total_bytes{$source}};
+
+	for my $destination (@sort_by_dest) {
+		print "$source => $destination: $total_bytes{$source}{$destination} bytes\n";
+	}
+	print "\n";
+}
+
+print $total_bytes_file_w to_json(\%total_bytes);
+print $total_bytes_each_source_file_w to_json(\%total_bytes_each_source);
+
+sub total_by_source {
+	my $key = shift;
+	my $total_bytes = shift;
+
+	my $sum = 0;
+	for my $k (keys %{%{$total_bytes}{$key}}) {
+		$sum += $total_bytes{$key}{$k};
+	}
+	return $sum;	
+}
