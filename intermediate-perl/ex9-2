@@ -1,0 +1,20 @@
+#!/usr/bin/perl
+use utf8;
+use strict;
+use warnings;
+
+use v5.12;
+
+my @patterns = ();
+while(<>) {
+  chomp($_);
+  push (@patterns, qr/$_/);
+}
+
+my $word = <STDIN>;
+chomp($word);
+while(my($i, $v) = each @patterns) {
+  if($word =~ m/$v/) {
+    print "match $i $v $word\n";
+  }
+}

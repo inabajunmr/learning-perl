@@ -3,12 +3,11 @@
 # use warnings;
 use feature qw(say state current_sub);
 use IO::Dir;
-# opendir my $dh, '.';
-my $dh = IO::Dir->new('.');
-foreach my $file (readdir($dh)) {
-    say $file;
-}
-$dh->rewind;
-foreach my $file (readdir($dh)) {
-    say $file;
-}
+use Regexp::Assemble;
+
+my $r = Regexp::Assemble->new;
+$r->add('123-1234-1234');
+$r->add('111-1111-1111');
+$r->add('444-4444-4567');
+$r->add('987-9999-0000');
+print $r;

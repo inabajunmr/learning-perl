@@ -1,0 +1,21 @@
+#!/usr/bin/perl
+use utf8;
+use strict;
+use warnings;
+
+use v5.12;
+use Regexp::Assemble;
+
+my $r = Regexp::Assemble->new;
+my @patterns = ();
+while(<>) {
+  chomp($_);
+  $r->add($_);
+  # push (@patterns, qr/$_/);
+}
+
+my $word = <STDIN>;
+chomp($word);
+if($word =~ m/$r/) {
+  print "match $r $word\n";
+}
