@@ -1,0 +1,30 @@
+#!perl
+
+use strict;
+use warnings;
+use utf8;
+
+use Time::Local;
+use IO::File;
+use IO::Tee;
+
+print "F/S/B?\n";
+my $fsb = <STDIN>;
+chomp($fsb);
+my $fh;
+if($fsb eq 'F') {
+	$fh = IO::File->new('ex8-1.out', 'w');
+}
+my $str;
+if($fsb eq 'S') {
+	$fh = IO::File->new(\$str, 'w');
+}
+if($fsb eq 'B') {
+	$fh = IO::Tee->new(IO::File->new('ex8-1.out', 'w'), IO::File->new(\$str, 'w'));
+}
+
+my ($sec, $min, $hour, $mday, $mon, $year, $wday, $yday, $isdst) = localtime;
+print $fh "$mday $wday";
+if($fsb eq 'S' || $fsb eq 'B') {
+	print $str;
+}

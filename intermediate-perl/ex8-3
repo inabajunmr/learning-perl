@@ -1,0 +1,13 @@
+#!perl
+
+use strict;
+use warnings;
+use utf8;
+
+foreach (@ARGV) {
+	opendir(my $dh, $_);
+	print "$_\n";
+	while(readdir $dh) {
+		print "    $_\n" unless($_ eq '.' || $_ eq '..');
+	}
+}

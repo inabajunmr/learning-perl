@@ -1,0 +1,14 @@
+#!perl
+
+use strict;
+use warnings;
+use utf8;
+use IO::File;
+
+my %files = ();
+while(<>) {
+	my $name = lc((split /:/, $_)[0]).'.info';
+	chomp($name);
+	$files{$name} = IO::File->new($name, 'w') if !exists($files{$name});
+	print {$files{$name}} $_;
+}
