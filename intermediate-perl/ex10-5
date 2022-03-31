@@ -1,0 +1,70 @@
+#!/usr/bin/perl
+use Data::Dumper;
+use File::Basename 'basename', 'dirname';
+
+sub data_for_path {
+    my $path = shift;
+    my $first = shift;
+    if (-f $path or -l $path) {
+        return undef;
+    }
+
+    my $directory = {};
+    my $tmp_dir = $directory;
+    opendir PATH, $path or die "Cannot opendir $tmp_path: $!";
+    my @names = readdir PATH;
+    closedir PATH;
+    my @remain = ();
+    push (@remain, map {"$path/$_"} sort @names);
+
+    while(@remain) {
+        my $tmp_path = shift(@remain);
+        if (not -d $tmp_path) {
+            $tmp_dir->{basename($tmp_path)} = undef;
+            next;
+        }
+        if (basename($tmp_path) eq '.' || basename($tmp_path) eq '..') {
+            next;
+        }
+        opendir PATH, $tmp_path or die "Cannot opendir $tmp_path: $!";
+        my @names = readdir PATH;
+        closedir PATH;
+        foreach(sort @names) {
+            $tmp_dir->{basename($tmp_path)}{$_} = {} unless ($_ eq '.' || $_ eq '..');
+        }
+        $tmp_dir = $tmp_dir->{basename($tmp_path)};
+        if($first eq 'depth-first') {
+            push (@remain, map {"$tmp_path/$_"} sort @names);
+        }
+        if($first eq 'breadth-first') {
+            unshift (@remain, map {"$tmp_path/$_"} sort @names);
+        }
+    }
+
+    return $directory;
+}
+
+dump_data_for_path('dir', data_for_path('/Users/inabajun/git/learning-perl/intermediate-perl/dir', 'depth-first'), 0);
+
+sub dump_data_for_path {
+    my $path = shift;
+    my $data = shift;
+    my $depth = shift;
+
+    if(not defined $data) {
+        print ' ' x ($depth * 2) . "$path\n";
+        return;
+    } else {
+        my $l = keys %$data;
+        if ($l == 0) {
+            print ' ' x ($depth * 2) . "$path, an empty directory\n";
+            return;
+        } else {
+            print ' ' x ($depth * 2) . "$path\n";
+        }
+    }
+
+    foreach(sort keys %$data) {
+        dump_data_for_path("$_", ${$data}{$_}, $depth+1);
+    }
+}

@@ -25,18 +25,28 @@ sub data_for_path {
 }
 
 # print Dumper(data_for_path('/Users/inabajun/git/learning-perl'));
-dump_data_for_path('/Users/inabajun/git/learning-perl', data_for_path('/Users/inabajun/git/learning-perl'));
+# dump_data_for_path('/Users/inabajun/git/learning-perl', data_for_path('/Users/inabajun/git/learning-perl'), 0);
+print Dumper (data_for_path('/Users/inabajun/git/learning-perl/intermediate-perl/dir'));
 
 sub dump_data_for_path {
     my $path = shift;
     my $data = shift;
+    my $depth = shift;
 
     if(not defined $data) {
-        print "$path\n";
+        print ' ' x ($depth * 2) . "$path\n";
         return;
+    } else {
+        my $l = keys %$data;
+        if ($l == 0) {
+            print ' ' x ($depth * 2) . "$path, an empty directory\n";
+            return;
+        } else {
+            print ' ' x ($depth * 2) . "$path\n";
+        }
     }
 
     foreach(sort keys %$data) {
-        dump_data_for_path("$path/$_", ${$data}{$_});
+        dump_data_for_path("$_", ${$data}{$_}, $depth+1);
     }
 }
