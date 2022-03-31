@@ -1,0 +1,14 @@
+#!/usr/bin/perl
+use utf8;
+use strict;
+use warnings;
+use Benchmark qw(:all) ;
+
+my @files = glob '*';
+sub old {
+    my @sorted = sort { -s $a <=> -s $b } @files;
+}
+sub new {
+    my @sorted = map {$_->[0]} (sort { $a->[1] <=> $b->[1] } (map [$_, -s $_], @files));
+}
+timethese( -2, { old => \&old, new => \&new} ) ;

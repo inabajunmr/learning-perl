@@ -1,0 +1,11 @@
+#!/usr/bin/perl
+use utf8;
+use strict;
+use warnings;
+use Benchmark qw(:all) ;
+
+my @array = qw(aaa Aaaa Baaa bAAA ABBB A-AAA);
+my @sorted = map {$_->[0]} sort {$a->[1] cmp $b->[1]} map {my $org = $_; $org =~ tr/A-Z/a-z/; $org =~ tr/a-z//cd; [$_, $org]} @array;
+print "@sorted\n";
+
+print "@array\n";
