@@ -3,9 +3,8 @@
 # use warnings;
 use feature qw(say state current_sub);
 
-my @array = qw(d a g z);
-map {
-    print 'call';
-    $_;
-} @array;
+require './sub1.pm';
 
+Sub::sub1();
+Wow::sub2();
+Sub::sub3();

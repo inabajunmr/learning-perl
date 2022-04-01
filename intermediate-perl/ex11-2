@@ -1,0 +1,8 @@
+#!/usr/bin/perl
+
+require('./ex11-1');
+my ($sec, $min, $hour, $mday, $mon, $year, $wday) = localtime;
+my $day_name = Oogaboogoo::calendar::number_to_day_name($mday);
+my $month_name = Oogaboogoo::calendar::number_to_month_name($mon);
+$year+=1900;
+print "Today is $day_name, $month_name $mday, $year\n";
