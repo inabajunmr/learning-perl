@@ -1,4 +1,4 @@
-package Animal;
+package LivingCreature;
 
 use 5.006;
 use strict;
@@ -6,7 +6,7 @@ use warnings;
 
 =head1 NAME
 
-Animal - The great new Animal!
+LivingCreature - The great new LivingCreature!
 
 =head1 VERSION
 
@@ -23,9 +23,9 @@ Quick summary of what the module does.
 
 Perhaps a little code snippet.
 
-    use Animal;
+    use LivingCreature;
 
-    my $foo = Animal->new();
+    my $foo = LivingCreature->new();
     ...
 
 =head1 EXPORT
@@ -38,17 +38,15 @@ if you don't export anything, such as for a purely object-oriented module.
 =head2 function1
 
 =cut
-use parent qw(LivingCreature);
 
-sub sound {
-  die ' You have to define sound() in a subclass';
-}
-
-=head2 function2
-
-=cut
-
-sub function2 {
+sub speak {
+  my $class = shift;
+  my $message = shift;
+  if (defined $message) {
+    print "$class, $message\n";
+  } else {
+      print "a $class goes ", $class->sound, "!\n";
+  }
 }
 
 =head1 AUTHOR
@@ -68,7 +66,7 @@ automatically be notified of progress on your bug as I make changes.
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc Animal
+    perldoc LivingCreature
 
 
 You can also look for information at:
@@ -104,4 +102,4 @@ This is free software, licensed under:
 
 =cut
 
-1; # End of Animal
+1; # End of LivingCreature
