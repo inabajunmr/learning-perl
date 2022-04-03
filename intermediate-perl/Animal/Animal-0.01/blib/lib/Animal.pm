@@ -41,13 +41,7 @@ if you don't export anything, such as for a purely object-oriented module.
 use parent qw(LivingCreature);
 
 sub sound {
-  die ' You must define sound() in a subclass';
-}
-sub speak {
-  my $class = shift;
-  my $sound = shift;
-  die "animal can't speak" if defined $sound;
-  $class->SUPER::speak;
+  die ' You have to define sound() in a subclass';
 }
 
 =head2 function2

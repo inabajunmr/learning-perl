@@ -38,14 +38,16 @@ if you don't export anything, such as for a purely object-oriented module.
 =head2 function1
 
 =cut
-
-sub speak {
-  my $class = shift;
-  print "a $class goes ", $class->sound, "!\n";
-}
+use parent qw(LivingCreature);
 
 sub sound {
-  die ' You have to define sound() in a subclass';
+  die ' You must define sound() in a subclass';
+}
+sub speak {
+  my $class = shift;
+  my $sound = shift;
+  die "animal can't speak" if defined $sound;
+  $class->SUPER::speak;
 }
 
 =head2 function2

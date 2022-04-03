@@ -1,4 +1,4 @@
-package Animal;
+package Mouse;
 
 use 5.006;
 use strict;
@@ -6,7 +6,7 @@ use warnings;
 
 =head1 NAME
 
-Animal - The great new Animal!
+Mouse - The great new Mouse!
 
 =head1 VERSION
 
@@ -23,9 +23,9 @@ Quick summary of what the module does.
 
 Perhaps a little code snippet.
 
-    use Animal;
+    use Mouse;
 
-    my $foo = Animal->new();
+    my $foo = Mouse->new();
     ...
 
 =head1 EXPORT
@@ -38,23 +38,13 @@ if you don't export anything, such as for a purely object-oriented module.
 =head2 function1
 
 =cut
-use parent qw(LivingCreature);
 
-sub sound {
-  die ' You must define sound() in a subclass';
-}
+use parent qw(Animal);
+sub sound { 'squeak' }
 sub speak {
   my $class = shift;
-  my $sound = shift;
-  die "animal can't speak" if defined $sound;
-  $class->SUPER::speak;
-}
-
-=head2 function2
-
-=cut
-
-sub function2 {
+  $class->SUPER::speak(@_);
+  print "[but you can barely hear it!\n";
 }
 
 =head1 AUTHOR
@@ -63,8 +53,8 @@ inabajunmr, C<< <inabajun.for.regi at gmail.com> >>
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-animal at rt.cpan.org>, or through
-the web interface at L<https://rt.cpan.org/NoAuth/ReportBug.html?Queue=Animal>.  I will be notified, and then you'll
+Please report any bugs or feature requests to C<bug-. at rt.cpan.org>, or through
+the web interface at L<https://rt.cpan.org/NoAuth/ReportBug.html?Queue=.>.  I will be notified, and then you'll
 automatically be notified of progress on your bug as I make changes.
 
 
@@ -74,7 +64,7 @@ automatically be notified of progress on your bug as I make changes.
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc Animal
+    perldoc Mouse
 
 
 You can also look for information at:
@@ -83,15 +73,15 @@ You can also look for information at:
 
 =item * RT: CPAN's request tracker (report bugs here)
 
-L<https://rt.cpan.org/NoAuth/Bugs.html?Dist=Animal>
+L<https://rt.cpan.org/NoAuth/Bugs.html?Dist=.>
 
 =item * CPAN Ratings
 
-L<https://cpanratings.perl.org/d/Animal>
+L<https://cpanratings.perl.org/d/.>
 
 =item * Search CPAN
 
-L<https://metacpan.org/release/Animal>
+L<https://metacpan.org/release/.>
 
 =back
 
@@ -110,4 +100,4 @@ This is free software, licensed under:
 
 =cut
 
-1; # End of Animal
+1; # End of Mouse

@@ -1,0 +1,10 @@
+#!/usr/local/bin/env perl
+use strict;
+use Cow;
+use Horse;
+use Sheep;
+
+my @pasture = qw(Cow Cow Horse Sheep Sheep);
+foreach my $beast (@pasture) {
+    $beast->speak;
+}
