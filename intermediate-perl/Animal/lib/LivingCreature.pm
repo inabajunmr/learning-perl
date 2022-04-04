@@ -42,10 +42,11 @@ if you don't export anything, such as for a purely object-oriented module.
 sub speak {
   my $class = shift;
   my $message = shift;
+
   if (defined $message) {
-    print "$class, $message\n";
+    print $class->name, ", $message\n";
   } else {
-      print "a $class goes ", $class->sound, "!\n";
+      print "a ", $class->name," goes ", $class->sound, "!\n";
   }
 }
 

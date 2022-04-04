@@ -39,6 +39,7 @@ if you don't export anything, such as for a purely object-oriented module.
 
 =cut
 use parent qw(Animal);
+sub default_color {'White'}
 sub sound { 'baaah'; }
 
 =head1 AUTHOR

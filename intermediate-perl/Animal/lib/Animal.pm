@@ -40,6 +40,17 @@ if you don't export anything, such as for a purely object-oriented module.
 =cut
 use parent qw(LivingCreature);
 
+sub default_color {'Brown'}
+sub color {
+  my $either = shift;
+  ref $either ? $either->{Color} : $either->default_color;
+
+  
+}
+sub set_color {
+  my $self = shift;
+  $self->{Color} = shift;
+}
 sub sound {
   die ' You must define sound() in a subclass';
 }
@@ -48,6 +59,25 @@ sub speak {
   my $sound = shift;
   die "animal can't speak" if defined $sound;
   $class->SUPER::speak;
+}
+sub named {
+  my $class = shift;
+  my $name = shift;
+  my $self = {Name => $name, Color => $class->default_color };
+  bless $self, $class;
+}
+sub name {
+  my $either = shift;
+  ref $either ? $either->{Name} : "an unnamed $either";
+}
+sub set_name {
+  my $self = shift;
+  $self->{Name} = shift;
+}
+sub eat {
+  my $either = shift;
+  my $food = shift;
+  print $either->name, " eats $food.\n";
 }
 
 =head2 function2

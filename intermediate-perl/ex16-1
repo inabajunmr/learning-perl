@@ -1,0 +1,40 @@
+#!/usr/bin/perl
+
+package MyDate;
+use Carp;
+
+sub AUTOLOAD {
+    my $self = shift;
+
+    our $AUTOLOAD;
+    $AUTOLOAD =~ s/.*:://;
+    my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) =
+                                                localtime(time);
+    if ($AUTOLOAD eq 'day'){
+        return $mday;
+    }
+    if ($AUTOLOAD eq 'month'){
+        return $mon + 1;
+    }
+    if ($AUTOLOAD eq 'year'){
+        return $year + 1900;
+    }
+
+    carp "$AUTOLOAD is undefined";
+
+}
+
+package Main;
+
+print MyDate->day(), "\n";
+print MyDate->month(), "\n";
+print MyDate->year(), "\n";
+print MyDate->nothing, "\n";
+print MyDate->debug('wow', 'wow'), "\n";
+
+sub UNIVERSAL::debug {
+    shift;
+    my $d = localtime;
+    my $in = join '|', @_;
+    print "[$d]", $in, "\n";
+}
