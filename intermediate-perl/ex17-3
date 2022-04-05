@@ -1,0 +1,5 @@
+#!/usr/bin/perl
+use My::List::Util;
+
+@a = (1,2,3);
+print sum(\@a);

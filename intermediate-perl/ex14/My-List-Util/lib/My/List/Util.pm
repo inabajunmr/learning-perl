@@ -4,6 +4,8 @@ use 5.006;
 use strict;
 use warnings;
 use List::Util qw(shuffle);
+use Exporter qw(import);
+our @EXPORT = qw(sum shuffle);
 
 =head1 NAME
 

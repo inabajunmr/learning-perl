@@ -2,10 +2,8 @@ use strict;
 use warnings;
 # use 5.010;
 use feature qw(say);
- 
-nothing();
- 
-sub AUTOLOAD {
-    print "nothing\n";
-}
- 
+use Sample qw(:yeah);
+
+yeah1;
+yeah2;
+yeah3;

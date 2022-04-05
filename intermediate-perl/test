@@ -1,7 +1,12 @@
 #!/usr/local/bin/env perl
-# use strict;
-# use warnings;
-use feature qw(say state);
-use Test::More tests => 2;
-is(10+15, 25, '10+15=25');
-is(10+15, 24, '10+15=24');
+
+package Test;
+use Exporter qw(import);
+our @EXPORT = qw(yes);
+sub yes {
+    print "yes\n";
+}
+
+package Main;
+use Test qw(yes);
+# yes();
