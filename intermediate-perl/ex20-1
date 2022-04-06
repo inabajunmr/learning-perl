@@ -1,0 +1,14 @@
+#!/usr/bin/perl
+use Test::File;
+use Test::More;
+SKIP: {
+    skip 'not darwin', 1 unless $^O eq 'darwin';
+    file_exists_ok('/etc/hosts');
+}
+
+SKIP: {
+    skip 'not MSWin32', 1 unless $^O eq 'MSWin32';
+    file_exists_ok('C:\Windows\system32\drivers\etc\hosts');
+}
+
+done_testing();

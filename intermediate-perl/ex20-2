@@ -1,0 +1,20 @@
+#!perl
+package Test::My::List::Util;
+use Test::Builder;
+
+my $Test = Test::Builder->new();
+sub sum_ok {
+    my $actual = shift;
+    my $expected = shift;
+    if ($actual == $expected) {
+        $Test->ok(1);
+    } else {
+        $Test->ok(0);
+    }
+
+    
+}
+
+package Main;
+Test::My::List::Util::sum_ok(1, 1);
+Test::My::List::Util::sum_ok(1, 2);
