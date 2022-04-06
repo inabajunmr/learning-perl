@@ -1,12 +1,4 @@
 #!/usr/local/bin/env perl
+use IO::FILE;
 
-package Test;
-use Exporter qw(import);
-our @EXPORT = qw(yes);
-sub yes {
-    print "yes\n";
-}
-
-package Main;
-use Test qw(yes);
-# yes();
+IO::File->new('file', 'r');

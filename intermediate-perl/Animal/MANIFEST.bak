@@ -3,6 +3,7 @@ Changes
 lib/Animal.pm
 lib/Cow.pm
 lib/Horse.pm
+lib/LivingCreature.pm
 lib/Mouse.pm
 lib/Person.pm
 lib/Sheep.pm
@@ -17,3 +18,5 @@ t/manifest.t
 t/pod-coverage.t
 t/pod.t
 xt/boilerplate.t
+META.yml
+META.json

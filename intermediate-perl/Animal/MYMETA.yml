@@ -23,6 +23,9 @@ provides:
   Horse:
     file: lib/Horse.pm
     version: '0.01'
+  LivingCreature:
+    file: lib/LivingCreature.pm
+    version: '0.01'
   Mouse:
     file: lib/Mouse.pm
     version: '0.01'
