@@ -1,3 +1,4 @@
+'Billy Boy.json'
 Build.PL
 Changes
 lib/Animal.pm
@@ -6,17 +7,25 @@ lib/Horse.pm
 lib/LivingCreature.pm
 lib/Mouse.pm
 lib/Person.pm
+lib/RaceHorse.pm
+lib/Racer.pm
 lib/Sheep.pm
 Makefile.PL
 MANIFEST			This list of files
+META.json
+META.yml
 README
 scripts/ex13-2
+scripts/ex15-1.pl
+scripts/horse-and-sheep.pl
+scripts/horse.pl
 scripts/mouse
 scripts/pasture
+scripts/person.pl
+scripts/racehorse.pl
 t/00-load.t
+t/Animal.t
 t/manifest.t
 t/pod-coverage.t
 t/pod.t
 xt/boilerplate.t
-META.yml
-META.json

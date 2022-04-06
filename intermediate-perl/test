@@ -1,4 +1,32 @@
 #!/usr/local/bin/env perl
-use IO::FILE;
+package SampleRole;
+use Moose::Role;
 
-IO::File->new('file', 'r');
+sub foo {print "foo";}
+sub bar {print "bar";}
+sub foobar {print "foobar";}
+
+package Sample;
+use Moose;
+with 'SampleRole';
+
+before 'foo' => sub {
+    print "BEFORE";
+};
+after 'bar' => sub {
+    print "AFTER";
+};
+around 'foobar' => sub {
+    print "AROUND";
+    my $routine = shift; # 第1引数 が元のサブルーチンの参照
+    my $self = shift;
+    $self->$routine();
+    print "AROUND";
+};
+
+package Main;
+
+my $s = Sample->new();
+$s->foo(); # BEFOREfoo
+$s->bar(); # barAFTER
+$s->foobar(); #AROUNDfoobarAROUND

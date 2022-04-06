@@ -1,3 +1,4 @@
+'Billy Boy.json'
 Build.PL
 Changes
 lib/Animal.pm
@@ -7,6 +8,7 @@ lib/LivingCreature.pm
 lib/Mouse.pm
 lib/Person.pm
 lib/RaceHorse.pm
+lib/Racer.pm
 lib/Sheep.pm
 Makefile.PL
 MANIFEST			This list of files
@@ -20,6 +22,7 @@ scripts/horse.pl
 scripts/mouse
 scripts/pasture
 scripts/person.pl
+scripts/racehorse.pl
 t/00-load.t
 t/Animal.t
 t/manifest.t

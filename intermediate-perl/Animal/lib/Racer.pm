@@ -1,4 +1,4 @@
-package RaceHorse;
+package Racer;
 
 use 5.006;
 use strict;
@@ -6,7 +6,7 @@ use warnings;
 
 =head1 NAME
 
-RaceHorse - The great new RaceHorse!
+Racer - The great new Racer!
 
 =head1 VERSION
 
@@ -23,9 +23,9 @@ Quick summary of what the module does.
 
 Perhaps a little code snippet.
 
-    use RaceHorse;
+    use Racer;
 
-    my $foo = RaceHorse->new();
+    my $foo = Racer->new();
     ...
 
 =head1 EXPORT
@@ -38,55 +38,20 @@ if you don't export anything, such as for a purely object-oriented module.
 =head2 function1
 
 =cut
+use Moose::Role;
+use namespace::autoclean;
 
-use Moose;
-use JSON;
-use IO::File;
+has $_ => (is => 'rw', default => 0) foreach qw(wins places shows losses);
+sub won { my $self = shift; $self->wins($self->wins + 1)}
+sub placed { my $self = shift; $self->places($self->places + 1)}
+sub showed { my $self = shift; $self->shows($self->shows + 1)}
+sub lost { my $self = shift; $self->losses($self->losses + 1)}
 
-extends 'Horse';
-with 'Racer';
-
-__PACKAGE__->meta->make_immutable( inline_destructor => 0 );
-
-sub named {
-  my $self = shift->SUPER::named(@_);
-  my %saved = restore($self->name());
-  $self->{wins} = $saved{wins};
-  $self->{places} = $saved{places};
-  $self->{shows} = $saved{shows};
-  $self->{losses} = $saved{losses};
-  $self;
-}
-sub restore {
-  my $name = shift;
-  my $filename = "$name.json";
-  if (-e $filename){
-    my $fh = IO::File->new($filename, 'r');
-    my $json = <$fh>;
-    return %{decode_json($json)};
-  } else {
-    return (
-      wins => 0,
-      places => 0,
-      shows => 0,
-      losses => 0,
-    )
-  }
-}
-sub DESTROY {
+sub standings {
   my $self = shift;
-  my %recorder = (
-    wins => $self->{wins},
-    places =>  $self->{places},
-    shows =>  $self->{shows},
-    losses =>  $self->{losses},
-    name => $self->name(),
-  );
-  my $json = encode_json(\%recorder);
-  my $fh = IO::File->new($self->name().".json", 'w');
-  print $fh $json;
-  $fh->close();
+  join ", ", map { $self->$_ . " $_" } qw(wins places shows losses);
 }
+
 =head2 function2
 
 =cut
@@ -111,7 +76,7 @@ automatically be notified of progress on your bug as I make changes.
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc RaceHorse
+    perldoc Racer
 
 
 You can also look for information at:
@@ -147,4 +112,4 @@ This is free software, licensed under:
 
 =cut
 
-1; # End of RaceHorse
+1; # End of Racer
